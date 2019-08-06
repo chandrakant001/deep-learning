@@ -29,38 +29,19 @@ from keras.backend import clear_session
 # Define a flask app
 app = Flask(__name__)
 
-# Model saved with Keras model.save()
-#MODEL_PATH = '/home/ai-9/Documents/63x3-CNN.model'
+
 CATEGORIES=['Dog','Cat']
 # Load your trained model
 global model
 model = load_model("63x3-CNN.model")
 graph = tf.get_default_graph()
-#model._make_predict_function()          # Necessary
-# print('Model loaded. Start serving...')
 
-# You can also use pretrained model from Keras
-# Check https://keras.io/applications/
-#from keras.applications.resnet50 import ResNet50
-#model = ResNet50(weights='imagenet')
-#model.save('')
+
+
 print('Model loaded. Check http://127.0.0.1:5000/')
 
 
-#def model_predict(img_path, model):
-#    img = image.load_img(img_path, target_size=(60, 60))
-#
-#    # Preprocessing the image
-#    x = image.img_to_array(img).reshape(-1,60,60,1)
-#    # x = np.true_divide(x, 255)
-#    x = np.expand_dims(x, axis=0)
-#
-#    # Be careful how your trained model deals with the input
-#    # otherwise, it won't make correct prediction!
-#    x = preprocess_input(x, mode='caffe')
-#
-#    preds = model.predict(x)
-#    return preds
+
 
 
 @app.route('/', methods=['GET'])
@@ -78,7 +59,7 @@ def prepare(filepath):
 @app.route('/predict', methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
-        print("3333333333333333333333333333333333")
+       
         # Get the file from post request
         f = request.files['file']
         
